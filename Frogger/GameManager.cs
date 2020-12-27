@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace Frogger
 {
@@ -11,7 +11,7 @@ namespace Frogger
         private bool GameOver { get; set; }
         UIMenu menu = new UIMenu();
 
-        //Frog frog = new Frog();
+        Frog frog = new Frog();
 
         private void Start()
         {
@@ -31,6 +31,8 @@ namespace Frogger
             while (!GameOver)
             {
                 Update();
+                Console.Clear();
+                //Thread.Sleep(120);
             }
 
             Console.Clear();
@@ -39,7 +41,7 @@ namespace Frogger
 
         public void Update()
         {
-            //frog.MoveFrog();
+            frog.MoveFrog();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Frogger
 {
     class UIMenu
     {
+        Obstacle obstacle = new Obstacle();
         Frog frog = new Frog();
 
 
@@ -29,7 +30,7 @@ namespace Frogger
                 {
                     case "1":
                         Console.Clear();
-                        frog.MoveFrog();
+                        ShowGame();
                         return;
                     case "2":
                         Console.Clear();
@@ -77,6 +78,11 @@ namespace Frogger
             Console.WriteLine("Diana Nóia a21703004");
             Console.WriteLine("Inês Gonçalves a21702076");
             Console.WriteLine("Thanks to our teacher: Nuno Fachada :)");
+        }
+
+        private void ShowGame()
+        {
+            obstacle.RenderSafeZone();
         }
     }
 }

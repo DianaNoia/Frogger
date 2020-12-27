@@ -13,6 +13,7 @@ namespace Frogger
 
         public void RenderFrog()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\u2580");
         }
 
@@ -20,7 +21,7 @@ namespace Frogger
         {
             ConsoleKeyInfo keyinfo;
             frogPosX = 50;
-            frogPosY = 25;
+            frogPosY = 48;
 
             Console.SetCursorPosition(frogPosX, frogPosY);
 
