@@ -10,9 +10,6 @@ namespace Frogger
     {
         public void DrawMenu()
         {
-            Console.SetWindowSize(100, 50);
-            Console.SetBufferSize(100, 50);
-
             Console.WriteLine("******************");
             Console.WriteLine("\tFrogger");
             Console.WriteLine("\t \n1. Play \n2. Controls \n3. Credits \n4. Highscores \n5. Quit \n");
@@ -42,11 +39,15 @@ namespace Frogger
                         Console.Clear();
                         Credits();
                         Console.ReadKey();
+                        Console.Clear();
+                        DrawMenu();
                         break;
                     case "4":
                         Console.Clear();
                         // higscores
                         Console.ReadKey();
+                        Console.Clear();
+                        DrawMenu();
                         break;
                     case "5":
                         Console.Clear();

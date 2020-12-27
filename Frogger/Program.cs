@@ -6,8 +6,8 @@ namespace Frogger
     {
         public static void Main(string[] args)
         {
-            UIMenu menu = new UIMenu();
-            menu.DrawMenu(); ;
+            GameManager gm = new GameManager();
+            gm.GameLoop();
         }
     }
 }
