@@ -8,6 +8,9 @@ namespace Frogger
 {
     class UIMenu
     {
+        Frog frog = new Frog();
+
+
         public void DrawMenu()
         {
             Console.WriteLine("******************");
@@ -26,7 +29,7 @@ namespace Frogger
                 {
                     case "1":
                         Console.Clear();
-                        // showgaem
+                        frog.MoveFrog();
                         return;
                     case "2":
                         Console.Clear();

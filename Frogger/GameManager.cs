@@ -11,6 +11,8 @@ namespace Frogger
         private bool GameOver { get; set; }
         UIMenu menu = new UIMenu();
 
+        //Frog frog = new Frog();
+
         private void Start()
         {
             Console.SetWindowSize(100, 50);
@@ -21,6 +23,7 @@ namespace Frogger
 
             menu.DrawMenu();
         }
+
         public void GameLoop()
         {
             Start();
@@ -36,7 +39,7 @@ namespace Frogger
 
         public void Update()
         {
-            //chama o jogo
+            //frog.MoveFrog();
         }
     }
 }
