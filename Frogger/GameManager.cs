@@ -8,5 +8,6 @@ namespace Frogger
 {
     class GameManager
     {
+
     }
 }
