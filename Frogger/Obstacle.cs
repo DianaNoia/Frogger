@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Frogger
 {
@@ -29,7 +27,7 @@ namespace Frogger
         public void RenderSafeZone()
         {
             col = 0;
-            row = 25;
+            row = 12;
             Console.SetCursorPosition(col, row);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
@@ -37,18 +35,24 @@ namespace Frogger
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
-                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
 
         }
 
-        private void MoveObstacles()
+        public void MoveObstacles()
         {
+            Console.SetCursorPosition(col, row);
 
+            if(col %2 == 0)
+            {
+                row++;
+                RenderCar();
+            }
+            else
+            {
+                row--;
+                RenderBus();
+            }
         }
     }
 }

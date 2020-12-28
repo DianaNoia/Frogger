@@ -12,11 +12,12 @@ namespace Frogger
         UIMenu menu = new UIMenu();
 
         Frog frog = new Frog();
+        Obstacle obstacle = new Obstacle();
 
         private void Start()
         {
-            Console.SetWindowSize(100, 50);
-            Console.SetBufferSize(100, 50);
+            Console.SetWindowSize(50, 25);
+            Console.SetBufferSize(50, 25);
             Console.CursorVisible = false;
 
             GameOver = false;
@@ -32,7 +33,7 @@ namespace Frogger
             {
                 Update();
                 Console.Clear();
-                //Thread.Sleep(120);
+                Thread.Sleep(120);
             }
 
             Console.Clear();
@@ -42,6 +43,8 @@ namespace Frogger
         public void Update()
         {
             frog.MoveFrog();
+            obstacle.RenderSafeZone();
+            obstacle.MoveObstacles();
         }
     }
 }

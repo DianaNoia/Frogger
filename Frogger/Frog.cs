@@ -11,22 +11,30 @@ namespace Frogger
         public int frogPosX;
         public int frogPosY;
 
-        public void RenderFrog()
+        private void RenderFrog()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\u2580");
         }
 
+        private void EraseFrog()
+        {
+            Console.SetCursorPosition(frogPosX, frogPosY);
+            Console.Write(" ");
+        }
+
         public void MoveFrog()
         {
             ConsoleKeyInfo keyinfo;
-            frogPosX = 50;
-            frogPosY = 48;
+            frogPosX = 25;
+            frogPosY = 23;
 
             Console.SetCursorPosition(frogPosX, frogPosY);
 
             frogPosX = Console.CursorLeft;
             frogPosY = Console.CursorTop;
+
+            RenderFrog();
 
             while (true)
             {
@@ -36,8 +44,9 @@ namespace Frogger
                     {
                         case ConsoleKey.RightArrow:
                             int x = frogPosX + 1;
-                            if (frogPosX < 99)
+                            if (frogPosX < 49)
                             {
+                                EraseFrog();
                                 Console.SetCursorPosition(x, frogPosY);
                                 frogPosX = Console.CursorLeft;
                                 RenderFrog();
@@ -47,6 +56,7 @@ namespace Frogger
                             int x2 = frogPosX - 1;
                             if (frogPosX > 0)
                             {
+                                EraseFrog();
                                 Console.SetCursorPosition(x2, frogPosY);
                                 frogPosX = Console.CursorLeft;
                                 RenderFrog();
@@ -56,6 +66,7 @@ namespace Frogger
                             int y = frogPosY - 1;
                             if (frogPosY > 0)
                             {
+                                EraseFrog();
                                 Console.SetCursorPosition(frogPosX, y);
                                 frogPosY = Console.CursorTop;
                                 RenderFrog();
@@ -63,8 +74,9 @@ namespace Frogger
                             break;
                         case ConsoleKey.DownArrow:
                             int y2 = frogPosY + 1;
-                            if (frogPosY < 49)
+                            if (frogPosY < 24)
                             {
+                                EraseFrog();
                                 Console.SetCursorPosition(frogPosX, y2);
                                 frogPosY = Console.CursorTop;
                                 RenderFrog();
