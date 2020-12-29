@@ -15,11 +15,14 @@ namespace Frogger
 
         public void DrawMenu()
         {
-            Console.WriteLine("******************");
-            Console.WriteLine("\tFrogger");
-            Console.WriteLine("\t \n1. Play \n2. Controls \n3. Credits \n4. Highscores \n5. Quit \n");
-            Console.WriteLine("******************");
-
+            Console.WriteLine("\n\n\n\n\n\n");
+            Console.WriteLine("**************************************************");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("\t\t      FROGGER\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\t\t    1. Play\n\t\t    2. Controls\n\t\t    3. Credits\n\t\t    4. Highscores\n\t\t    5. Quit \n");
+            Console.WriteLine("**************************************************");
+            
             Options();
         }
 
@@ -90,7 +93,6 @@ namespace Frogger
             Console.Clear();
             Console.WriteLine("You lost! Get good");
             Console.WriteLine("You had x points");
-
             Console.WriteLine("Press any key to go back");
 
             Console.ReadKey();
