@@ -32,8 +32,8 @@ namespace Frogger
             while (!GameOver)
             {
                 Update();
-                Console.Clear();
                 Thread.Sleep(120);
+                Console.Clear();
             }
 
             Console.Clear();
@@ -42,9 +42,10 @@ namespace Frogger
 
         public void Update()
         {
-            frog.MoveFrog();
             obstacle.RenderSafeZone();
             obstacle.MoveObstacles();
+            frog.MoveFrog();
+            
         }
     }
 }

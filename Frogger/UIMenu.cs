@@ -82,7 +82,6 @@ namespace Frogger
 
         private void ShowGame()
         {
-            obstacle.RenderSafeZone();
         }
     }
 }

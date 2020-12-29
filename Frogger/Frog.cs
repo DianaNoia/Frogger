@@ -8,8 +8,8 @@ namespace Frogger
 {
     class Frog
     {
-        public int frogPosX;
-        public int frogPosY;
+        public int frogPosX = 25;
+        public int frogPosY = 23;
 
         private void RenderFrog()
         {
@@ -26,8 +26,6 @@ namespace Frogger
         public void MoveFrog()
         {
             ConsoleKeyInfo keyinfo;
-            frogPosX = 25;
-            frogPosY = 23;
 
             Console.SetCursorPosition(frogPosX, frogPosY);
 
@@ -36,7 +34,7 @@ namespace Frogger
 
             RenderFrog();
 
-            while (true)
+            while (Console.KeyAvailable)
             {
                 if ((keyinfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)
                 {
