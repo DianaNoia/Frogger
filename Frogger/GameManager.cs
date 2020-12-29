@@ -8,11 +8,10 @@ namespace Frogger
 {
     class GameManager
     {
-        private bool GameOver { get; set; }
-        UIMenu menu = new UIMenu();
-
-        Frog frog = new Frog();
-        Obstacle obstacle = new Obstacle();
+        public bool GameOver { get; set; }
+        private UIMenu menu = new UIMenu();
+        private Frog frog = new Frog();
+        private Obstacle obstacle = new Obstacle();
 
         private void Start()
         {
@@ -45,7 +44,7 @@ namespace Frogger
             obstacle.RenderSafeZone();
             obstacle.MoveObstacles();
             frog.MoveFrog();
-            
+            obstacle.ObstacleCollision(frog, menu);
         }
     }
 }

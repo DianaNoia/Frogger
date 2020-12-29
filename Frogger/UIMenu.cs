@@ -11,6 +11,7 @@ namespace Frogger
         Obstacle obstacle = new Obstacle();
         Frog frog = new Frog();
 
+        private GameManager gm;
 
         public void DrawMenu()
         {
@@ -82,6 +83,20 @@ namespace Frogger
 
         private void ShowGame()
         {
+        }
+
+        public void LoseGame()
+        {
+            Console.Clear();
+            Console.WriteLine("You lost! Get good");
+            Console.WriteLine("You had x points");
+
+            Console.WriteLine("Press any key to go back");
+
+            Console.ReadKey();
+            Console.Clear();
+
+            gm.GameOver = true;
         }
     }
 }
