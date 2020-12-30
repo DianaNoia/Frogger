@@ -30,6 +30,7 @@ namespace Frogger
 
             while (!GameOver)
             {
+                obstacle.RenderLives();
                 Update();
                 Thread.Sleep(120);
                 Console.Clear();

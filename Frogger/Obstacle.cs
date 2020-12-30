@@ -9,6 +9,8 @@ namespace Frogger
         private int col;
         private int row;
 
+        private int lives = 3;
+
         // Lista de Tuples
         private List<(int col, int row)> cars = new List<(int, int)>();
         private List<(int col, int row)> buses = new List<(int, int)>();
@@ -82,6 +84,15 @@ namespace Frogger
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
         }
 
+        public void RenderLives()
+        {
+            col = 0;
+            row = 0;
+
+            Console.SetCursorPosition(col, row);
+            Console.WriteLine("Lives: " + lives);
+        }
+
         public void MoveObstacles()
         {
             Console.SetCursorPosition(col, row);
@@ -121,9 +132,17 @@ namespace Frogger
             for (int i = 0; i < cars.Count; i++)
             {
                 if (y == cars[i].row && x >= cars[i].col &&
-                    x <= cars[i].col +2)
+                    x <= cars[i].col + 2)
                 {
-                    menu.LoseGame();
+                    lives = lives - 1;
+                    RenderLives();
+                    x = 25;
+                    y = 23;
+
+                    if (lives == 0)
+                    {
+                        menu.LoseGame();
+                    }
                 }
             }
 
@@ -132,7 +151,15 @@ namespace Frogger
                 if (y == buses[i].row && x >= buses[i].col &&
                     x <= buses[i].col + 5)
                 {
-                    menu.LoseGame();
+                    lives = lives - 1;
+                    RenderLives();
+                    x = 25;
+                    y = 23;
+
+                    if (lives == 0)
+                    {
+                        menu.LoseGame();
+                    }
                 }
             }
         }
