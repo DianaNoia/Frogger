@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Timers;
 
 namespace Frogger
 {
@@ -25,6 +25,22 @@ namespace Frogger
             
             Options();
         }
+
+        // private void Animations()
+        // {
+        //     for (int i = 0; i < 50; i++)
+        //     {
+        //         for (int j = 0; j < 45; j++)
+        //         {
+        //             Console.Clear();
+        //             string buffer = "".PadLeft(j);
+        //             Console.WriteLine(buffer + @" @ @ ", Console.ForegroundColor = ConsoleColor.DarkGreen, e.SignalTime);
+        //             Console.WriteLine(buffer + @"\(_)/", Console.ForegroundColor = ConsoleColor.DarkGreen);
+        //             Console.WriteLine(buffer + @" / \ ", Console.ForegroundColor = ConsoleColor.DarkGreen);
+        //             Console.ForegroundColor = ConsoleColor.White;
+        //         }
+        //     }
+        // }
 
         public void Options()
         {
