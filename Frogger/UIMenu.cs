@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading;
 
 namespace Frogger
 {
@@ -15,6 +15,7 @@ namespace Frogger
 
         public void DrawMenu()
         {
+            //Animations();
             Console.WriteLine("\n\n\n\n\n\n");
             Console.WriteLine("**************************************************");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -22,25 +23,28 @@ namespace Frogger
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\t\t    1. Play\n\t\t    2. Controls\n\t\t    3. Credits\n\t\t    4. Highscores\n\t\t    5. Quit \n");
             Console.WriteLine("**************************************************");
-            
+
             Options();
         }
 
-        // private void Animations()
-        // {
-        //     for (int i = 0; i < 50; i++)
-        //     {
-        //         for (int j = 0; j < 45; j++)
-        //         {
-        //             Console.Clear();
-        //             string buffer = "".PadLeft(j);
-        //             Console.WriteLine(buffer + @" @ @ ", Console.ForegroundColor = ConsoleColor.DarkGreen, e.SignalTime);
-        //             Console.WriteLine(buffer + @"\(_)/", Console.ForegroundColor = ConsoleColor.DarkGreen);
-        //             Console.WriteLine(buffer + @" / \ ", Console.ForegroundColor = ConsoleColor.DarkGreen);
-        //             Console.ForegroundColor = ConsoleColor.White;
-        //         }
-        //     }
-        // }
+        //private void Animations()
+        //{
+        //    //for (int i = 0; i < 1; i++)
+        //    //{
+        //    for (int j = 0; j < 1; j++)
+        //    {
+        //        Console.Clear();
+        //        string buffer = "".PadLeft(j);
+        //        Console.WriteLine(buffer + @" @ @ ", Console.ForegroundColor = ConsoleColor.DarkGreen);
+        //        Console.WriteLine(buffer + @"\(_)/", Console.ForegroundColor = ConsoleColor.DarkGreen);
+        //        Console.WriteLine(buffer + @" / \ ", Console.ForegroundColor = ConsoleColor.DarkGreen);
+        //        Console.ForegroundColor = ConsoleColor.White;
+        //
+        //    }
+        //
+        //    Thread.Sleep(100);
+        //    //}
+        //}
 
         public void Options()
         {

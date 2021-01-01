@@ -8,8 +8,13 @@ namespace Frogger
     {
         private int col;
         private int row;
-
         private int lives = 3;
+
+        private bool passed = false;
+        private bool finished = false;
+
+
+        private int Points { get; set; } = 0;
 
         // Lista de Tuples
         private List<(int col, int row)> cars = new List<(int, int)>();
@@ -83,14 +88,61 @@ namespace Frogger
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
         }
+        public void RenderEndZone()
+        {
+            col = 0;
+            row = 9;
+            Console.SetCursorPosition(col, row);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
+                "\u2580\u2580\u2580\u2580\u2580\u2580\u2580");
+        }
 
-        public void RenderLives()
+        public void RenderPoints()
         {
             col = 0;
             row = 0;
 
             Console.SetCursorPosition(col, row);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Points: " + Points);
+        }
+
+        public void RenderLives()
+        {
+            col = 0;
+            row = 1;
+
+            Console.SetCursorPosition(col, row);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Lives: " + lives);
+        }
+
+        public void SafeZoneCleared(Frog frog)
+        {
+            if (frog.frogPosY == 16 && !passed)
+            {
+                passed = true;
+                Points = Points + 100;
+            }
+        }
+
+        public void EndZoneReached(Frog frog)
+        {
+            if (frog.frogPosY == 9 && !finished)
+            {
+                finished = true;
+                Points = Points + 500;
+
+                if (true)
+                {
+
+                }
+            }
         }
 
         public void MoveObstacles()
@@ -136,8 +188,10 @@ namespace Frogger
                 {
                     lives = lives - 1;
                     RenderLives();
+
                     x = 25;
                     y = 23;
+                    Console.SetCursorPosition(x, y);
 
                     if (lives == 0)
                     {
@@ -153,8 +207,10 @@ namespace Frogger
                 {
                     lives = lives - 1;
                     RenderLives();
+
                     x = 25;
                     y = 23;
+                    Console.SetCursorPosition(x, y);
 
                     if (lives == 0)
                     {
