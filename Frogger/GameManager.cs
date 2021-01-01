@@ -8,7 +8,6 @@ namespace Frogger
 {
     class GameManager
     {
-        public bool GameOver { get; set; }
         private UIMenu menu = new UIMenu();
         private Frog frog = new Frog();
         private Obstacle obstacle = new Obstacle();
@@ -19,7 +18,7 @@ namespace Frogger
             Console.SetBufferSize(50, 25);
             Console.CursorVisible = false;
 
-            GameOver = false;
+            obstacle.GameOver = false;
 
             menu.DrawMenu();
         }
@@ -28,7 +27,7 @@ namespace Frogger
         {
             Start();
 
-            while (!GameOver)
+            while (!obstacle.GameOver)
             {
                 obstacle.RenderLives();
                 obstacle.RenderPoints();
@@ -48,7 +47,6 @@ namespace Frogger
             obstacle.MoveObstacles();
             frog.MoveFrog();
             obstacle.ObstacleCollision(frog, menu);
-
             obstacle.SafeZoneCleared(frog);
             obstacle.EndZoneReached(frog, menu);
         }

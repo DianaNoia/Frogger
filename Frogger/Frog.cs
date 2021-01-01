@@ -15,6 +15,7 @@ namespace Frogger
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\u2580");
+            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void EraseFrog()

@@ -14,8 +14,8 @@ namespace Frogger
         private bool passed = false;
         private bool finished = false;
 
-
         public int Points { get; set; } = 0;
+        public bool GameOver { get; set; }
 
         // Lista de Tuples
         private List<(int col, int row)> cars = new List<(int, int)>();
@@ -109,7 +109,6 @@ namespace Frogger
             row = 0;
 
             Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Points: " + Points);
         }
 
@@ -119,7 +118,6 @@ namespace Frogger
             row = 1;
 
             Console.SetCursorPosition(col, row);
-            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Lives: " + lives);
         }
 
@@ -144,13 +142,21 @@ namespace Frogger
                     finish++;
                     frog.frogPosX = 25;
                     frog.frogPosY = 23;
-                    Console.SetCursorPosition(frog.frogPosX,frog.frogPosY);
+                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
                     finished = false;
                     passed = false;
                 }
                 else if (finish == 4)
                 {
-                    menu.WinGame();
+                    menu.WinGame(Points);
+                    Points = 0;
+                    lives = 3;
+                    frog.frogPosX = 25;
+                    frog.frogPosY = 23;
+                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
+                    finished = false;
+                    passed = false;
+                    finish = 0;
                 }
             }
         }
@@ -205,7 +211,7 @@ namespace Frogger
 
                     if (lives == 0)
                     {
-                        menu.LoseGame();
+                        menu.LoseGame(Points, GameOver);
                     }
                 }
             }
@@ -224,7 +230,7 @@ namespace Frogger
 
                     if (lives == 0)
                     {
-                        menu.LoseGame();
+                        menu.LoseGame(Points, GameOver);
                     }
                 }
             }
