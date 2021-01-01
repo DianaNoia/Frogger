@@ -111,14 +111,24 @@ namespace Frogger
         public void LoseGame()
         {
             Console.Clear();
-            Console.WriteLine("You lost! Get good");
-            Console.WriteLine("You had x points");
+            Console.WriteLine("You lost!");
+            Console.WriteLine($"You had " + obstacle.Points + " points");
             Console.WriteLine("Press any key to go back");
 
             Console.ReadKey();
             Console.Clear();
 
             gm.GameOver = true;
+        }
+
+        public void WinGame()
+        {
+            Console.Clear();
+            Console.WriteLine("You won!");
+            Console.WriteLine($"You had " + obstacle.Points + " points");
+            Console.ReadKey();
+            Console.Clear();
+            DrawMenu();
         }
     }
 }

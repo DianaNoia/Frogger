@@ -9,12 +9,13 @@ namespace Frogger
         private int col;
         private int row;
         private int lives = 3;
+        private int finish = 0;
 
         private bool passed = false;
         private bool finished = false;
 
 
-        private int Points { get; set; } = 0;
+        public int Points { get; set; } = 0;
 
         // Lista de Tuples
         private List<(int col, int row)> cars = new List<(int, int)>();
@@ -131,16 +132,25 @@ namespace Frogger
             }
         }
 
-        public void EndZoneReached(Frog frog)
+        public void EndZoneReached(Frog frog, UIMenu menu)
         {
             if (frog.frogPosY == 9 && !finished)
             {
                 finished = true;
                 Points = Points + 500;
 
-                if (true)
+                if (finish < 4)
                 {
-
+                    finish++;
+                    frog.frogPosX = 25;
+                    frog.frogPosY = 23;
+                    Console.SetCursorPosition(frog.frogPosX,frog.frogPosY);
+                    finished = false;
+                    passed = false;
+                }
+                else if (finish == 4)
+                {
+                    menu.WinGame();
                 }
             }
         }
@@ -189,9 +199,9 @@ namespace Frogger
                     lives = lives - 1;
                     RenderLives();
 
-                    x = 25;
-                    y = 23;
-                    Console.SetCursorPosition(x, y);
+                    frog.frogPosX = 25;
+                    frog.frogPosY = 23;
+                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
 
                     if (lives == 0)
                     {
@@ -208,9 +218,9 @@ namespace Frogger
                     lives = lives - 1;
                     RenderLives();
 
-                    x = 25;
-                    y = 23;
-                    Console.SetCursorPosition(x, y);
+                    frog.frogPosX = 25;
+                    frog.frogPosY = 23;
+                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
 
                     if (lives == 0)
                     {

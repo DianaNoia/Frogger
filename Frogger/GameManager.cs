@@ -47,10 +47,10 @@ namespace Frogger
             obstacle.RenderEndZone();
             obstacle.MoveObstacles();
             frog.MoveFrog();
-            //obstacle.ObstacleCollision(frog, menu);
+            obstacle.ObstacleCollision(frog, menu);
 
             obstacle.SafeZoneCleared(frog);
-
+            obstacle.EndZoneReached(frog, menu);
         }
     }
 }
