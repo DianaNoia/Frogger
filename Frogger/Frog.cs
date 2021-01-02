@@ -9,7 +9,7 @@ namespace Frogger
     class Frog
     {
         public int frogPosX = 25;
-        public int frogPosY = 23;
+        public int frogPosY = 18;
 
         private void RenderFrog()
         {

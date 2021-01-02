@@ -121,7 +121,7 @@ namespace Frogger
             gameover = obstacle.GameOver;
             gameover = true;
 
-            Environment.Exit(0);
+            DrawMenu();
         }
 
         public void WinGame(int points)

@@ -26,39 +26,39 @@ namespace Frogger
             col = 0;
             row = 0;
 
-            cars.Add((col, 22));
-            cars.Add((25, 22));
-            buses.Add((46, 21));
-            buses.Add((20, 21));
-            cars.Add((4, 20));
-            cars.Add((15, 20));
-            cars.Add((30, 20));
-            buses.Add((40, 19));
-            buses.Add((26, 19));
-            buses.Add((5, 19));
-            cars.Add((1, 18));
-            cars.Add((10, 18));
-            cars.Add((20, 18));
-            cars.Add((32, 18));
-            buses.Add((18, 17));
-            buses.Add((2, 17));
+            cars.Add((col, 17));
+            cars.Add((25, 17));
+            buses.Add((46, 16));
+            buses.Add((20, 16));
             cars.Add((4, 15));
-            cars.Add((20, 15));
-            cars.Add((35, 15));
-            buses.Add((6, 14));
+            cars.Add((15, 15));
+            cars.Add((30, 15));
+            buses.Add((40, 14));
             buses.Add((26, 14));
+            buses.Add((5, 14));
+            cars.Add((1, 13));
             cars.Add((10, 13));
-            cars.Add((26, 13));
-            buses.Add((20, 12));
-            buses.Add((30, 12));
-            buses.Add((5, 12));
-            cars.Add((23, 11));
-            cars.Add((6, 11));
-            cars.Add((18, 11));
-            cars.Add((36, 11));
-            buses.Add((8, 10));
-            buses.Add((16, 10));
-            buses.Add((36, 10));
+            cars.Add((20, 13));
+            cars.Add((32, 13));
+            buses.Add((18, 12));
+            buses.Add((2, 12));
+            cars.Add((4, 10));
+            cars.Add((20, 10));
+            cars.Add((35, 10));
+            buses.Add((6, 9));
+            buses.Add((26, 9));
+            cars.Add((10, 8));
+            cars.Add((26, 8));
+            buses.Add((20, 7));
+            buses.Add((30, 7));
+            buses.Add((5, 7));
+            cars.Add((23, 6));
+            cars.Add((6, 6));
+            cars.Add((18, 6));
+            cars.Add((36, 6));
+            buses.Add((8, 5));
+            buses.Add((16, 5));
+            buses.Add((36, 5));
 
         }
 
@@ -79,7 +79,7 @@ namespace Frogger
         public void RenderSafeZone()
         {
             col = 0;
-            row = 16;
+            row = 11;
             Console.SetCursorPosition(col, row);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
@@ -92,7 +92,7 @@ namespace Frogger
         public void RenderEndZone()
         {
             col = 0;
-            row = 9;
+            row = 4;
             Console.SetCursorPosition(col, row);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
@@ -123,7 +123,7 @@ namespace Frogger
 
         public void SafeZoneCleared(Frog frog)
         {
-            if (frog.frogPosY == 16 && !passed)
+            if (frog.frogPosY == 11 && !passed)
             {
                 passed = true;
                 Points = Points + 100;
@@ -132,7 +132,7 @@ namespace Frogger
 
         public void EndZoneReached(Frog frog, UIMenu menu)
         {
-            if (frog.frogPosY == 9 && !finished)
+            if (frog.frogPosY == 4 && !finished)
             {
                 finished = true;
                 Points = Points + 500;
@@ -141,7 +141,7 @@ namespace Frogger
                 {
                     finish++;
                     frog.frogPosX = 25;
-                    frog.frogPosY = 23;
+                    frog.frogPosY = 18;
                     Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
                     finished = false;
                     passed = false;
@@ -152,7 +152,7 @@ namespace Frogger
                     Points = 0;
                     lives = 3;
                     frog.frogPosX = 25;
-                    frog.frogPosY = 23;
+                    frog.frogPosY = 18;
                     Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
                     finished = false;
                     passed = false;
@@ -206,12 +206,14 @@ namespace Frogger
                     RenderLives();
 
                     frog.frogPosX = 25;
-                    frog.frogPosY = 23;
+                    frog.frogPosY = 18;
                     Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
 
                     if (lives == 0)
                     {
                         menu.LoseGame(Points, GameOver);
+                        lives = 3;
+                        Points = 0;
                     }
                 }
             }
@@ -225,12 +227,14 @@ namespace Frogger
                     RenderLives();
 
                     frog.frogPosX = 25;
-                    frog.frogPosY = 23;
+                    frog.frogPosY = 18;
                     Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
 
                     if (lives == 0)
                     {
                         menu.LoseGame(Points, GameOver);
+                        lives = 3;
+                        Points = 0;
                     }
                 }
             }
