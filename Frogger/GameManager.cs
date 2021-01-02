@@ -8,12 +8,15 @@ namespace Frogger
 {
     class GameManager
     {
-        private UIMenu menu = new UIMenu();
+        //private HighScores hs = new HighScores();
+        private UIMenu menu;
         private Frog frog = new Frog();
         private Obstacle obstacle = new Obstacle();
 
         private void Start()
         {
+            menu = new UIMenu();
+
             Console.SetWindowSize(50, 25);
             Console.SetBufferSize(50, 25);
             Console.CursorVisible = false;
@@ -31,11 +34,13 @@ namespace Frogger
             {
                 obstacle.RenderLives();
                 obstacle.RenderPoints();
+                obstacle.RenderFinishNum();
                 Update();
                 Thread.Sleep(120);
                 Console.Clear();
             }
 
+            //hs.InputScore(obstacle.Points);
             Console.Clear();
             GameLoop();
         }
