@@ -17,6 +17,8 @@ namespace Frogger
         public int Points { get; set; } = 0;
         public bool GameOver { get; set; }
 
+        //private HighScores hs = new HighScores();
+
         // Lista de Tuples
         private List<(int col, int row)> cars = new List<(int, int)>();
         private List<(int col, int row)> buses = new List<(int, int)>();
@@ -59,7 +61,6 @@ namespace Frogger
             buses.Add((8, 5));
             buses.Add((16, 5));
             buses.Add((36, 5));
-
         }
 
         private void RenderCar()
@@ -121,6 +122,15 @@ namespace Frogger
             Console.WriteLine("Lives: " + lives);
         }
 
+        public void RenderFinishNum()
+        {
+            col = 0;
+            row = 2;
+
+            Console.SetCursorPosition(col, row);
+            Console.WriteLine("Finish times: " + finish);
+        }
+
         public void SafeZoneCleared(Frog frog)
         {
             if (frog.frogPosY == 11 && !passed)
@@ -140,6 +150,7 @@ namespace Frogger
                 if (finish < 4)
                 {
                     finish++;
+                    RenderFinishNum();
                     frog.frogPosX = 25;
                     frog.frogPosY = 18;
                     Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
@@ -148,6 +159,7 @@ namespace Frogger
                 }
                 else if (finish == 4)
                 {
+                    RenderFinishNum();
                     menu.WinGame(Points);
                     Points = 0;
                     lives = 3;
@@ -212,6 +224,7 @@ namespace Frogger
                     if (lives == 0)
                     {
                         menu.LoseGame(Points, GameOver);
+                        //hs.InputScore(Points);
                         lives = 3;
                         Points = 0;
                     }
@@ -233,6 +246,7 @@ namespace Frogger
                     if (lives == 0)
                     {
                         menu.LoseGame(Points, GameOver);
+                        //hs.InputScore(Points);
                         lives = 3;
                         Points = 0;
                     }
