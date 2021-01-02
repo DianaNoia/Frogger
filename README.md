@@ -10,13 +10,24 @@
 ## Repartição de Tarefas
 
 * **Diana Nóia**
+  * Movimento do jogador;
+  * Colisões com os obstáculos;
+  * Vidas/Pontos do jogador;
   * GameManager;
   * Menu;
+  * Relatório;
+  * UML;
 
-* **Inês Gonçalves-**
-  * Frog movement;
-  * Obstacles movement;
-  * 
+* **Inês Gonçalves**
+  * Movimento do jogador;
+  * Movimento e Render obstáculos;
+  * Colisões com os obstáculos;
+  * Vidas/Pontos do jogador;
+  * SafeZone e Endzone;
+  * Fix Layout e outros erros;
+  * HighScores;
+  * Relatório;
+  * UML;
 
 ### Repositório
 
@@ -37,26 +48,26 @@ Tentamos seguir os principios *SOLID* para a organização do projeto, em
 particular o *Single Responsability Principle*, com uma classe para cada coisa
 (como *p.e.*, uma classe para desenhar o menu, etc.).  
 O GameLoop inicializa e atualiza o jogo através dos métodos `Start()` e
-`Update()`, respetivamente.
+`Update()`, respetivamente, e utiliza a Thread principal.
 
-  
-
+Tentámos mostrar uma lista de Highscores, utilizando o StreamReader/StreamWriter
+para guardar as pontuações num ficheiro e depois mostrá-las, mas não conseguimos
+finalizar essa parte.
 
 Este projeto foi útil para consolidar o nosso conhecimento sobre Threads e
 como/quando utilizá-las.
-
 
 ### Diagrama UML
 
 O UML deste projeto é o seguinte:
 
-![UML](uml.svg);
+![UML](UML.svg);
 
 ### Fluxograma
 
 O fluxograma deste projeto é o seguinte:
 
-![Fluxograma](fluxograma.svg);
+![Fluxograma](Fluxograma.svg);
 
 ## Referências
 
