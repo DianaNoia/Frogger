@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace Frogger
 {
+    /// <summary>
+    /// Classe que gera o Sapo 
+    /// </summary>
     class Frog
     {
+        /// <summary>
+        /// Posição em X do Sapo, começa a 25
+        /// </summary>
         public int frogPosX = 25;
+        /// <summary>
+        /// Posição em Y do Sapo, começa a 18
+        /// </summary>
         public int frogPosY = 18;
 
+        /// <summary>
+        /// Método que dá render ao Sapo
+        /// </summary>
         private void RenderFrog()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -18,12 +30,18 @@ namespace Frogger
             Console.ForegroundColor = ConsoleColor.White;
         }
 
+        /// <summary>
+        /// Método que apaga o Sapo
+        /// </summary>
         private void EraseFrog()
         {
             Console.SetCursorPosition(frogPosX, frogPosY);
             Console.Write(" ");
         }
 
+        /// <summary>
+        /// Método que move o Sapo
+        /// </summary>
         public void MoveFrog()
         {
             ConsoleKeyInfo keyinfo;
@@ -35,10 +53,14 @@ namespace Frogger
 
             RenderFrog();
 
+            // Enquanto que a key pressionada estiver disponivél
             while (Console.KeyAvailable)
             {
+                // Se uma das keys for pressionada e não for Escape
                 if ((keyinfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)
                 {
+                    // Aceita o input da key e move o Sapo de acordo com a 
+                    // direção escolhida
                     switch (keyinfo.Key)
                     {
                         case ConsoleKey.RightArrow:
