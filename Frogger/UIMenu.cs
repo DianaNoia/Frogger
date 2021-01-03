@@ -1,29 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Timers;
+﻿// <copyright file="UIMenu.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Frogger
 {
+    using System;
+
     /// <summary>
-    /// Classe que desenha o texto na consola
+    /// Classe que desenha o texto na consola.
     /// </summary>
-    class UIMenu
+    public class UIMenu
     {
         /// <summary>
-        /// Instância do obstacle
+        /// Método que imprime os controlos.
         /// </summary>
-        Obstacle obstacle = new Obstacle();
-        
+        public static void Controls()
+        {
+            Console.WriteLine("Play with the arrow keys");
+            Console.WriteLine("Reach the top five times to win!");
+        }
+
         /// <summary>
-        /// Método que desenha o menu
+        /// Método que imprime os créditos.
+        /// </summary>
+        public static void Credits()
+        {
+            Console.WriteLine("Game made by:");
+            Console.WriteLine("\n* Diana Nóia a21703004");
+            Console.WriteLine("* Inês Gonçalves a21702076\n");
+            Console.WriteLine("Thanks to our teacher: Nuno Fachada :)");
+        }
+
+        /// <summary>
+        /// Método que desenha o menu.
         /// </summary>
         public void DrawMenu()
         {
-            //Animations();
-
             Console.WriteLine("\n\n\n\n\n\n");
             Console.WriteLine("**************************************************");
             Console.ForegroundColor = ConsoleColor.DarkGreen;
@@ -32,11 +44,11 @@ namespace Frogger
             Console.WriteLine("\t\t    1. Play\n\t\t    2. Controls\n\t\t    3. Credits\n\t\t    4. Quit \n");
             Console.WriteLine("**************************************************");
 
-            Options();
+            this.Options();
         }
 
         /// <summary>
-        /// Método para seleção das opções
+        /// Método para seleção das opções.
         /// </summary>
         public void Options()
         {
@@ -53,14 +65,14 @@ namespace Frogger
                         Controls();
                         Console.ReadKey();
                         Console.Clear();
-                        DrawMenu();
+                        this.DrawMenu();
                         break;
                     case "3":
                         Console.Clear();
                         Credits();
                         Console.ReadKey();
                         Console.Clear();
-                        DrawMenu();
+                        this.DrawMenu();
                         break;
                     case "4":
                         Console.Clear();
@@ -71,67 +83,42 @@ namespace Frogger
                         Console.WriteLine("Wrong input! Try again");
                         Console.ReadLine();
                         Console.Clear();
-                        DrawMenu();
+                        this.DrawMenu();
                         break;
                 }
             }
         }
 
         /// <summary>
-        /// Método que imprime os controlos
-        /// </summary>
-        public void Controls()
-        {
-            Console.WriteLine("Play with the arrow keys");
-            Console.WriteLine("Reach the top five times to win!");
-        }
-
-        /// <summary>
-        /// Método que imprime os créditos
-        /// </summary>
-        public void Credits()
-        {
-            Console.WriteLine("Game made by:");
-            Console.WriteLine("\n* Diana Nóia a21703004");
-            Console.WriteLine("* Inês Gonçalves a21702076\n");
-            Console.WriteLine("Thanks to our teacher: Nuno Fachada :)");
-        }
-
-        /// <summary>
         /// Método que imprime quantos pontos o jogador fez após este perder o
         /// jogo, e regressa ao menu inicial.
         /// </summary>
-        /// <param name="points"></param>
-        /// <param name="gameover"></param>
-        public void LoseGame(int points, bool gameover)
+        /// <param name="points">Variável points.</param>
+        public void LoseGame(int points)
         {
             Console.Clear();
             Console.WriteLine("You lost!");
-            Console.WriteLine($"You had " + points + " points");
+            Console.WriteLine("You had " + points + " points");
             Console.WriteLine("Press any key to go back");
-
             Console.ReadKey();
             Console.Clear();
 
-            gameover = obstacle.GameOver;
-            gameover = true;
-
-            DrawMenu();
+            this.DrawMenu();
         }
 
         /// <summary>
         /// Método que imprime quantos pontos o jogador fez após este ganhar o
         /// jogo, e regressa ao menu inicial.
         /// </summary>
-        /// <param name="points"></param>
+        /// <param name="points">Variável points.</param>
         public void WinGame(int points)
         {
             Console.Clear();
             Console.WriteLine("You won!");
-            Console.WriteLine($"You had " + points + " points");
+            Console.WriteLine("You had " + points + " points");
             Console.ReadKey();
             Console.Clear();
-            DrawMenu();
+            this.DrawMenu();
         }
     }
 }

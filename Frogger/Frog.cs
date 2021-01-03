@@ -1,29 +1,105 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// <copyright file="Frog.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Frogger
 {
+    using System;
+
     /// <summary>
-    /// Classe que gera o Sapo 
+    /// Classe que gera o Sapo.
     /// </summary>
-    class Frog
+    public class Frog
     {
         /// <summary>
-        /// Posição em X do Sapo, começa a 25
+        /// Gets or sets posição em X do Sapo, começa a 25.
         /// </summary>
-        public int frogPosX = 25;
-        /// <summary>
-        /// Posição em Y do Sapo, começa a 18
-        /// </summary>
-        public int frogPosY = 18;
+        public int FrogPosX { get; set; } = 25;
 
         /// <summary>
-        /// Método que dá render ao Sapo
+        /// Gets or sets posição em Y do Sapo, começa a 18.
         /// </summary>
-        private void RenderFrog()
+        public int FrogPosY { get; set; } = 18;
+
+        /// <summary>
+        /// Método que move o Sapo.
+        /// </summary>
+        public void MoveFrog()
+        {
+            ConsoleKeyInfo keyinfo;
+
+            Console.SetCursorPosition(this.FrogPosX, this.FrogPosY);
+
+            this.FrogPosX = Console.CursorLeft;
+            this.FrogPosY = Console.CursorTop;
+
+            RenderFrog();
+
+            // Enquanto que a key pressionada estiver disponivél
+            while (Console.KeyAvailable)
+            {
+                keyinfo = Console.ReadKey(true);
+
+                // Se uma das keys for pressionada e não for Escape
+                if (keyinfo.Key != ConsoleKey.Escape)
+                {
+                    // Aceita o input da key e move o Sapo de acordo com a
+                    // direção escolhida
+                    switch (keyinfo.Key)
+                    {
+                        case ConsoleKey.RightArrow:
+                            int x = this.FrogPosX + 1;
+                            if (this.FrogPosX < 49)
+                            {
+                                this.EraseFrog();
+                                Console.SetCursorPosition(x, this.FrogPosY);
+                                this.FrogPosX = Console.CursorLeft;
+                                RenderFrog();
+                            }
+
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            int x2 = this.FrogPosX - 1;
+                            if (this.FrogPosX > 0)
+                            {
+                                this.EraseFrog();
+                                Console.SetCursorPosition(x2, this.FrogPosY);
+                                this.FrogPosX = Console.CursorLeft;
+                                RenderFrog();
+                            }
+
+                            break;
+                        case ConsoleKey.UpArrow:
+                            int y = this.FrogPosY - 1;
+                            if (this.FrogPosY > 0)
+                            {
+                                this.EraseFrog();
+                                Console.SetCursorPosition(this.FrogPosX, y);
+                                this.FrogPosY = Console.CursorTop;
+                                RenderFrog();
+                            }
+
+                            break;
+                        case ConsoleKey.DownArrow:
+                            int y2 = this.FrogPosY + 1;
+                            if (this.FrogPosY < 24)
+                            {
+                                this.EraseFrog();
+                                Console.SetCursorPosition(this.FrogPosX, y2);
+                                this.FrogPosY = Console.CursorTop;
+                                RenderFrog();
+                            }
+
+                            break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Método que dá render ao Sapo.
+        /// </summary>
+        private static void RenderFrog()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\u2580");
@@ -31,81 +107,12 @@ namespace Frogger
         }
 
         /// <summary>
-        /// Método que apaga o Sapo
+        /// Método que apaga o Sapo.
         /// </summary>
         private void EraseFrog()
         {
-            Console.SetCursorPosition(frogPosX, frogPosY);
+            Console.SetCursorPosition(this.FrogPosX, this.FrogPosY);
             Console.Write(" ");
-        }
-
-        /// <summary>
-        /// Método que move o Sapo
-        /// </summary>
-        public void MoveFrog()
-        {
-            ConsoleKeyInfo keyinfo;
-
-            Console.SetCursorPosition(frogPosX, frogPosY);
-
-            frogPosX = Console.CursorLeft;
-            frogPosY = Console.CursorTop;
-
-            RenderFrog();
-
-            // Enquanto que a key pressionada estiver disponivél
-            while (Console.KeyAvailable)
-            {
-                // Se uma das keys for pressionada e não for Escape
-                if ((keyinfo = Console.ReadKey(true)).Key != ConsoleKey.Escape)
-                {
-                    // Aceita o input da key e move o Sapo de acordo com a 
-                    // direção escolhida
-                    switch (keyinfo.Key)
-                    {
-                        case ConsoleKey.RightArrow:
-                            int x = frogPosX + 1;
-                            if (frogPosX < 49)
-                            {
-                                EraseFrog();
-                                Console.SetCursorPosition(x, frogPosY);
-                                frogPosX = Console.CursorLeft;
-                                RenderFrog();
-                            }
-                            break;
-                        case ConsoleKey.LeftArrow:
-                            int x2 = frogPosX - 1;
-                            if (frogPosX > 0)
-                            {
-                                EraseFrog();
-                                Console.SetCursorPosition(x2, frogPosY);
-                                frogPosX = Console.CursorLeft;
-                                RenderFrog();
-                            }
-                            break;
-                        case ConsoleKey.UpArrow:
-                            int y = frogPosY - 1;
-                            if (frogPosY > 0)
-                            {
-                                EraseFrog();
-                                Console.SetCursorPosition(frogPosX, y);
-                                frogPosY = Console.CursorTop;
-                                RenderFrog();
-                            }
-                            break;
-                        case ConsoleKey.DownArrow:
-                            int y2 = frogPosY + 1;
-                            if (frogPosY < 24)
-                            {
-                                EraseFrog();
-                                Console.SetCursorPosition(frogPosX, y2);
-                                frogPosY = Console.CursorTop;
-                                RenderFrog();
-                            }
-                            break;
-                    }
-                }
-            }
         }
     }
 }

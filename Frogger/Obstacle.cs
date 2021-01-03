@@ -1,131 +1,122 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿// <copyright file="Obstacle.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace Frogger
 {
+    using System;
+    using System.Collections.Generic;
+
     /// <summary>
-    /// Classe que coloca e faz dos obstáculos no mundo
+    /// Classe que coloca e faz dos obstáculos no mundo.
     /// </summary>
-    class Obstacle
+    public class Obstacle
     {
         /// <summary>
-        /// Colunas
+        /// Lista de Tuples para os carros.
+        /// </summary>
+        private readonly List<(int col, int row)> cars =
+            new List<(int, int)>();
+
+        /// <summary>
+        /// Lista de Tuples para os autocarros.
+        /// </summary>
+        private readonly List<(int col, int row)> buses =
+            new List<(int, int)>();
+
+        /// <summary>
+        /// Colunas.
         /// </summary>
         private int col;
+
         /// <summary>
-        /// Linhas
+        /// Linhas.
         /// </summary>
         private int row;
+
         /// <summary>
-        /// Vidas do sapo, começa com 3
+        /// Vidas do sapo, começa com 3.
         /// </summary>
         private int lives = 3;
-        /// <summary>
-        /// Variável que guarda o número de vezes que o jogador chegou ao topo
-        /// </summary>
-        private int finish = 0;
 
         /// <summary>
-        /// Variável booleana que verifica se o jogador passou pela safezone
+        /// Variável que guarda o número de vezes que o jogador chegou ao topo.
         /// </summary>
-        private bool passed = false;
-        /// <summary>
-        /// Variável booleana que verifica se o jogador já chegou ao topo
-        /// </summary>
-        private bool finished = false;
+        private int finish;
 
         /// <summary>
-        /// Propriedade auto-implementada que guarda os pontos, começa a 0
+        /// Variável booleana que verifica se o jogador passou pela safezone.
         /// </summary>
-        public int Points { get; set; } = 0;
-        /// <summary>
-        /// Propriedade auto-implementada para o Game Over
-        /// </summary>
-        public bool GameOver { get; set; }
-
-        //private HighScores hs = new HighScores();
+        private bool passed;
 
         /// <summary>
-        /// Lista de Tuples para os carros
+        /// Variável booleana que verifica se o jogador já chegou ao topo.
         /// </summary>
-        private List<(int col, int row)> cars = new List<(int, int)>();
-        /// <summary>
-        /// Lista de Tuples para os autocarros
-        /// </summary>
-        private List<(int col, int row)> buses = new List<(int, int)>();
+        private bool finished;
 
         /// <summary>
-        /// Construtor da classe, coloca os obstáculos na consola
+        /// Initializes a new instance of the <see cref="Obstacle"/> class.
         /// </summary>
         public Obstacle()
         {
-            col = 0;
-            row = 0;
+            this.col = 0;
+            this.row = 0;
 
-            cars.Add((col, 17));
-            cars.Add((25, 17));
-            buses.Add((46, 16));
-            buses.Add((20, 16));
-            cars.Add((4, 15));
-            cars.Add((15, 15));
-            cars.Add((30, 15));
-            buses.Add((40, 14));
-            buses.Add((26, 14));
-            buses.Add((5, 14));
-            cars.Add((1, 13));
-            cars.Add((10, 13));
-            cars.Add((20, 13));
-            cars.Add((32, 13));
-            buses.Add((18, 12));
-            buses.Add((2, 12));
-            cars.Add((4, 10));
-            cars.Add((20, 10));
-            cars.Add((35, 10));
-            buses.Add((6, 9));
-            buses.Add((26, 9));
-            cars.Add((10, 8));
-            cars.Add((26, 8));
-            buses.Add((20, 7));
-            buses.Add((30, 7));
-            buses.Add((5, 7));
-            cars.Add((23, 6));
-            cars.Add((6, 6));
-            cars.Add((18, 6));
-            cars.Add((36, 6));
-            buses.Add((8, 5));
-            buses.Add((16, 5));
-            buses.Add((36, 5));
+            this.cars.Add((this.col, 17));
+            this.cars.Add((25, 17));
+            this.buses.Add((46, 16));
+            this.buses.Add((20, 16));
+            this.cars.Add((4, 15));
+            this.cars.Add((15, 15));
+            this.cars.Add((30, 15));
+            this.buses.Add((40, 14));
+            this.buses.Add((26, 14));
+            this.buses.Add((5, 14));
+            this.cars.Add((1, 13));
+            this.cars.Add((10, 13));
+            this.cars.Add((20, 13));
+            this.cars.Add((32, 13));
+            this.buses.Add((18, 12));
+            this.buses.Add((2, 12));
+            this.cars.Add((4, 10));
+            this.cars.Add((20, 10));
+            this.cars.Add((35, 10));
+            this.buses.Add((6, 9));
+            this.buses.Add((26, 9));
+            this.cars.Add((10, 8));
+            this.cars.Add((26, 8));
+            this.buses.Add((20, 7));
+            this.buses.Add((30, 7));
+            this.buses.Add((5, 7));
+            this.cars.Add((23, 6));
+            this.cars.Add((6, 6));
+            this.cars.Add((18, 6));
+            this.cars.Add((36, 6));
+            this.buses.Add((8, 5));
+            this.buses.Add((16, 5));
+            this.buses.Add((36, 5));
         }
 
         /// <summary>
-        /// Método que faz render dos carros
+        /// Gets or sets a value indicating whether gets or sets a value
+        /// indicating  os pontos, começa a 0.
         /// </summary>
-        private void RenderCar()
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\u2580\u2580\u2580\u2580");
-            Console.ForegroundColor = ConsoleColor.White;
-        }
+        public int Points { get; set; }
 
         /// <summary>
-        /// Método que faz render dos autocarros
+        /// Gets or sets a value indicating whether gets or sets a value
+        /// indicating o Game Over.
         /// </summary>
-        private void RenderBus()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580");
-            Console.ForegroundColor = ConsoleColor.White;
-        }
+        public bool GameOver { get; set; }
 
         /// <summary>
-        /// Método que faz render da safezone
+        /// Método que faz render da safezone.
         /// </summary>
         public void RenderSafeZone()
         {
-            col = 0;
-            row = 11;
-            Console.SetCursorPosition(col, row);
+            this.col = 0;
+            this.row = 11;
+            Console.SetCursorPosition(this.col, this.row);
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
@@ -136,13 +127,13 @@ namespace Frogger
         }
 
         /// <summary>
-        /// Método que faz render da zona final
+        /// Método que faz render da zona final.
         /// </summary>
         public void RenderEndZone()
         {
-            col = 0;
-            row = 4;
-            Console.SetCursorPosition(col, row);
+            this.col = 0;
+            this.row = 4;
+            Console.SetCursorPosition(this.col, this.row);
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
                 "\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580" +
@@ -153,55 +144,60 @@ namespace Frogger
         }
 
         /// <summary>
-        /// Método que faz render dos pontos
+        /// Método que faz render dos pontos.
         /// </summary>
         public void RenderPoints()
         {
-            col = 0;
-            row = 0;
+            this.col = 0;
+            this.row = 0;
 
-            Console.SetCursorPosition(col, row);
-            Console.WriteLine("Points: " + Points);
+            Console.SetCursorPosition(this.col, this.row);
+            Console.WriteLine("Points: " + this.Points);
         }
 
         /// <summary>
-        /// Método que faz render das vidas
+        /// Método que faz render das vidas.
         /// </summary>
         public void RenderLives()
         {
-            col = 0;
-            row = 1;
+            this.col = 0;
+            this.row = 1;
 
-            Console.SetCursorPosition(col, row);
-            Console.WriteLine("Lives: " + lives);
+            Console.SetCursorPosition(this.col, this.row);
+            Console.WriteLine("Lives: " + this.lives);
         }
 
         /// <summary>
         /// Método que faz render de quantas vezes o jogador passou pela zona
-        /// final
+        /// final.
         /// </summary>
         public void RenderFinishNum()
         {
-            col = 0;
-            row = 2;
+            this.col = 0;
+            this.row = 2;
 
-            Console.SetCursorPosition(col, row);
-            Console.WriteLine("Finish times: " + finish);
+            Console.SetCursorPosition(this.col, this.row);
+            Console.WriteLine("Finish times: " + this.finish);
         }
 
         /// <summary>
         /// Método que verifica que se o jogador passou pela safezone e atribui
-        /// 100 pontos quando o faz
+        /// 100 pontos quando o faz.
         /// </summary>
-        /// <param name="frog"></param>
+        /// <param name="frog">Variável frog.</param>
         public void SafeZoneCleared(Frog frog)
         {
+            if (frog == null)
+            {
+                throw new ArgumentNullException(nameof(frog));
+            }
+
             // Se a posição do sapo for igual à posição da safezone e ele ainda
             // não tiver passado por lá recebe 500 pontos
-            if (frog.frogPosY == 11 && !passed)
+            if (frog.FrogPosY == 11 && !this.passed)
             {
-                passed = true;
-                Points = Points + 100;
+                this.passed = true;
+                this.Points = this.Points + 100;
             }
         }
 
@@ -210,77 +206,90 @@ namespace Frogger
         /// 500 pontos quando o faz. Se chegar ao final 5 vezes o jogo acaba e
         /// faz reset às variáveis.
         /// </summary>
-        /// <param name="frog"></param>
-        /// <param name="menu"></param>
+        /// <param name="frog">Variável frog.</param>
+        /// <param name="menu">Variável menu.</param>
         public void EndZoneReached(Frog frog, UIMenu menu)
         {
+            if (frog == null)
+            {
+                throw new ArgumentNullException(nameof(frog));
+            }
+
             // Se a posição do user for igual à posição da endzone e o jogo não
             // tiver acabado
-            if (frog.frogPosY == 4 && !finished)
+            if (frog.FrogPosY == 4 && !this.finished)
             {
                 // Finished fica verdadeiro e o jogador recebe 500 pontos
-                finished = true;
-                Points = Points + 500;
+                this.finished = true;
+                this.Points += 500;
 
                 // Se o user não tiver chegado à endzone 5 vezes o jogo
                 // continua e o sapo volta à posição inicial
-                if (finish < 4)
+                if (this.finish < 4)
                 {
-                    finish++;
-                    RenderFinishNum();
-                    frog.frogPosX = 25;
-                    frog.frogPosY = 18;
-                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
-                    finished = false;
-                    passed = false;
+                    this.finish++;
+                    this.RenderFinishNum();
+                    frog.FrogPosX = 25;
+                    frog.FrogPosY = 18;
+                    Console.SetCursorPosition(frog.FrogPosX, frog.FrogPosY);
+                    this.finished = false;
+                    this.passed = false;
                 }
-                // Se o user tiver chegado à endzone 5 vezes o jogo acaba e 
+
+                // Se o user tiver chegado à endzone 5 vezes o jogo acaba e
                 // aparece o ecrã de ganhar o jogo, e os valores do jogador
                 // dão reset
-                else if (finish == 4)
+                else if (this.finish == 4)
                 {
-                    RenderFinishNum();
-                    menu.WinGame(Points);
-                    Points = 0;
-                    lives = 3;
-                    frog.frogPosX = 25;
-                    frog.frogPosY = 18;
-                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
-                    finished = false;
-                    passed = false;
-                    finish = 0;
+                    if (menu == null)
+                    {
+                        throw new ArgumentNullException(nameof(menu));
+                    }
+
+                    this.RenderFinishNum();
+                    menu.WinGame(this.Points);
+                    this.Points = 0;
+                    this.lives = 3;
+                    frog.FrogPosX = 25;
+                    frog.FrogPosY = 18;
+                    Console.SetCursorPosition(frog.FrogPosX, frog.FrogPosY);
+                    this.finished = false;
+                    this.passed = false;
+                    this.finish = 0;
                 }
             }
         }
 
         /// <summary>
-        /// Método que move os obstáculos
+        /// Método que move os obstáculos.
         /// </summary>
         public void MoveObstacles()
         {
-            Console.SetCursorPosition(col, row);
+            Console.SetCursorPosition(this.col, this.row);
 
             // Percorre a lista de carros e move-os
-            for (int i = 0; i < cars.Count; i++)
+            for (int i = 0; i < this.cars.Count; i++)
             {
-                if (cars[i].col + 1 == 50)
+                if (this.cars[i].col + 1 == 50)
                 {
-                    cars[i] = (0, cars[i].row);
+                    this.cars[i] = (0, this.cars[i].row);
                 }
-                cars[i] = (cars[i].col + 1, cars[i].row);
-                Console.SetCursorPosition(cars[i].col, cars[i].row);
+
+                this.cars[i] = (this.cars[i].col + 1, this.cars[i].row);
+                Console.SetCursorPosition(this.cars[i].col, this.cars[i].row);
                 RenderCar();
             }
 
             // Percorre a lista de autocarros e move-os
-            for (int i = 0; i < buses.Count; i++)
+            for (int i = 0; i < this.buses.Count; i++)
             {
-                if (buses[i].col == 0)
+                if (this.buses[i].col == 0)
                 {
-                    buses[i] = (44, buses[i].row);
+                    this.buses[i] = (44, this.buses[i].row);
                 }
-                buses[i] = (buses[i].col - 1, buses[i].row);
-                Console.SetCursorPosition(buses[i].col, buses[i].row);
+
+                this.buses[i] = (this.buses[i].col - 1, this.buses[i].row);
+                Console.SetCursorPosition(this.buses[i].col, this.buses[i].row);
                 RenderBus();
             }
         }
@@ -289,67 +298,102 @@ namespace Frogger
         /// Método que deteta a colisão do user com os obstáculos, e retira 1
         /// vida a cada colisão. Se as vidas chegarem a 0, o jogo acaba.
         /// </summary>
-        /// <param name="frog"></param>
-        /// <param name="menu"></param>
+        /// <param name="frog">Variável frog.</param>
+        /// <param name="menu">Variável menu.</param>
         public void ObstacleCollision(Frog frog, UIMenu menu)
         {
             int x = 0;
             int y = 0;
 
-            x = frog.frogPosX;
-            y = frog.frogPosY;
+            if (frog == null)
+            {
+                throw new ArgumentNullException(nameof(frog));
+            }
+
+            x = frog.FrogPosX;
+            y = frog.FrogPosY;
 
             // Percorre a lista de carros
-            for (int i = 0; i < cars.Count; i++)
+            for (int i = 0; i < this.cars.Count; i++)
             {
-                // Se a posição do jogador e do carro forem iguais, o jogador 
+                // Se a posição do jogador e do carro forem iguais, o jogador
                 // perde uma vida e volta à posição inicial
-                if (y == cars[i].row && x >= cars[i].col &&
-                    x <= cars[i].col + 2)
+                if (y == this.cars[i].row && x >= this.cars[i].col &&
+                    x <= this.cars[i].col + 2)
                 {
-                    lives = lives - 1;
-                    RenderLives();
+                    this.lives = this.lives - 1;
+                    this.RenderLives();
 
-                    frog.frogPosX = 25;
-                    frog.frogPosY = 18;
-                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
+                    frog.FrogPosX = 25;
+                    frog.FrogPosY = 18;
+                    Console.SetCursorPosition(frog.FrogPosX, frog.FrogPosY);
 
-                    // Se as vidas do jogador chegarem a 0 o jogo acaba e é 
+                    // Se as vidas do jogador chegarem a 0 o jogo acaba e é
                     // mostrado um ecrã de derrota
-                    if (lives == 0)
+                    if (this.lives == 0)
                     {
-                        menu.LoseGame(Points, GameOver);
-                        lives = 3;
-                        Points = 0;
+                        if (menu == null)
+                        {
+                            throw new ArgumentNullException(nameof(menu));
+                        }
+
+                        menu.LoseGame(this.Points);
+                        this.lives = 3;
+                        this.Points = 0;
                     }
                 }
             }
 
             // Percorre a lista de autocarros
-            for (int i = 0; i < buses.Count; i++)
+            for (int i = 0; i < this.buses.Count; i++)
             {
                 // Se a posição do jogador e do autocarro forem iguais, o
                 // jogador perde uma vida e volta à posição inicial
-                if (y == buses[i].row && x >= buses[i].col &&
-                    x <= buses[i].col + 5)
+                if (y == this.buses[i].row && x >= this.buses[i].col &&
+                    x <= this.buses[i].col + 5)
                 {
-                    lives = lives - 1;
-                    RenderLives();
+                    this.lives = this.lives - 1;
+                    this.RenderLives();
 
-                    frog.frogPosX = 25;
-                    frog.frogPosY = 18;
-                    Console.SetCursorPosition(frog.frogPosX, frog.frogPosY);
+                    frog.FrogPosX = 25;
+                    frog.FrogPosY = 18;
+                    Console.SetCursorPosition(frog.FrogPosX, frog.FrogPosY);
 
-                    // Se as vidas do jogador chegarem a 0 o jogo acaba e é 
+                    // Se as vidas do jogador chegarem a 0 o jogo acaba e é
                     // mostrado um ecrã de derrota
-                    if (lives == 0)
+                    if (this.lives == 0)
                     {
-                        menu.LoseGame(Points, GameOver);
-                        lives = 3;
-                        Points = 0;
+                        if (menu == null)
+                        {
+                            throw new ArgumentNullException(nameof(menu));
+                        }
+
+                        menu.LoseGame(this.Points);
+                        this.lives = 3;
+                        this.Points = 0;
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Método que faz render dos carros.
+        /// </summary>
+        private static void RenderCar()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\u2580\u2580\u2580\u2580");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        /// <summary>
+        /// Método que faz render dos autocarros.
+        /// </summary>
+        private static void RenderBus()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\u2580\u2580\u2580\u2580\u2580\u2580");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
