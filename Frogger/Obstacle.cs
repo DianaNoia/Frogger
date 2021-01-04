@@ -321,7 +321,7 @@ namespace Frogger
                 if (y == this.cars[i].row && x >= this.cars[i].col &&
                     x <= this.cars[i].col + 2)
                 {
-                    this.lives = this.lives - 1;
+                    this.lives--;
                     this.RenderLives();
 
                     frog.FrogPosX = 25;
@@ -352,7 +352,7 @@ namespace Frogger
                 if (y == this.buses[i].row && x >= this.buses[i].col &&
                     x <= this.buses[i].col + 5)
                 {
-                    this.lives = this.lives - 1;
+                    this.lives--;
                     this.RenderLives();
 
                     frog.FrogPosX = 25;

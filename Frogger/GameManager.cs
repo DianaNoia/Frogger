@@ -71,8 +71,6 @@ namespace Frogger
         {
             this.menu = new UIMenu();
 
-            Console.SetWindowSize(50, 25);
-            Console.SetBufferSize(50, 25);
             Console.CursorVisible = false;
             this.obstacle.GameOver = false;
             this.menu.DrawMenu();
